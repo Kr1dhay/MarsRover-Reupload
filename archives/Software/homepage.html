@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> ICE02 Program</title>
+    <style>
+      * {
+    margin: 0;
+    padding: 0;
+    clear:both;
+  }
+
+  html, body{
+    height: 100%;
+  }
+
+  .header{
+    margin-top: 0%;
+    height: 5%;
+    width: 100%;
+    background-color: rgb(55, 55, 55);
+
+
+} 
+  .displayBox{
+      height: 30%;
+      width: 30%;
+      margin: auto;
+      margin-top: 3%;
+      border-color: #353943;
+      border-style: solid;
+      border-width: 20px;
+  }
+
+
+ .header p {
+    text-align: left;
+    margin:auto;
+    padding: 8px;
+    font-family: 'Franklin Gothic Medium', sans-serif;
+    font-size: 16px;
+    color: #ffffff;
+  }
+  
+
+.sensor{
+  padding: 2.5em 0;
+  width: 400px;
+  margin: 0 auto;
+}
+
+.sensor button {
+  padding: 20px;
+  width: 20%;
+  height: 20%;
+  margin-left:  40%;
+  margin-top: 10px;
+  border: none;
+  background-color: #353943;
+  color:#ffffff;
+  display: inline;
+}
+
+/* Keyboard style */
+.wasd {
+  width: 400px;
+  display: inline;
+
+}
+/* Top row for keyboard */
+.top-row {
+  width: 140px;
+  margin-left: 110px;
+}
+/* Bottom row for keyboard */
+.bottom-row {
+  display: inline-flex;
+}
+
+/* Style for each Key */
+.key {
+  background-color: #353943;
+  border: 1px solid #834426;
+  box-shadow: 5px 5px #c2b7ab;
+  color: #ffffff;
+  width: 80px;
+  height: 80px;
+  margin: 15px;
+  text-align: center;
+  top: 0;
+  left: 0;
+  transition: all 0.07s ease;
+}
+
+
+.key:active, .activekey{
+  transform: scale(1.1);
+  position: relative;
+  top: 0.2em;
+  left: 0.2em;
+  box-shadow: 0 0 0 0;
+}
+    
+    </style>
+  </head>
+  <body>
+
+    <div class = header>
+        <p> ICEO2 Mars Rover</p>
+    </div>
+
+    <div class = "displayBox">
+
+
+    </div>
+
+    <div class = "sensor"> 
+      <button id="sensekey" class="key">SENSE</button>
+    </div>
+  
+    <!-- Keyboard Container -->
+    <div class="wasd">
+      <!-- Top Row -->
+      <div class="top-row">
+        <!-- Key -->
+        <button id="wkey" class="key" onclick="forward()">W</button>
+      </div>
+  
+      <!-- Bottom Row -->
+      <div class="bottom-row">
+          <button id="akey" class="key" onclick="left()" >A</button>
+          <button id="skey" class="key" onclick="backward()" >S</button>
+          <button id="dkey" class="key" onclick="right()" >D</button>
+      </div>
+    </div>
+
+        
+
+
+
+
+
+
+  </body>
+  <script>
+
+
+      document.addEventListener("keydown", function(event) {
+        if (event.keyCode === 	87) {
+         document.getElementById("wkey").classList.add("activekey");
+        }
+        if  (event.keyCode === 	65) {
+          document.getElementById("akey").classList.add("activekey");
+
+        }
+        if (event.keyCode === 	83) {
+          document.getElementById("skey").classList.add("activekey");
+
+        }
+        if (event.keyCode === 	68) {
+          document.getElementById("dkey").classList.add("activekey");
+
+        }
+        if (event.keyCode === 	32) {
+          document.getElementById("sensekey").classList.add("activekey");
+
+        }
+      }); 
+
+      document.addEventListener("keyup", function(event) {
+        if (event.keyCode === 	87) {
+         document.getElementById("wkey").classList.remove("activekey");
+        }
+        if  (event.keyCode === 	65) {
+          document.getElementById("akey").classList.remove("activekey");
+
+        }
+        if (event.keyCode === 	83) {
+          document.getElementById("skey").classList.remove("activekey");
+
+        }
+        if (event.keyCode === 	68) {
+          document.getElementById("dkey").classList.remove("activekey");
+
+        }
+        if (event.keyCode === 	32) {
+          document.getElementById("sensekey").classList.remove("activekey");
+
+        }
+      }); 
+
+      var xhttp = new XMLHttpRequest();
+      
+      function forward(){
+        xhttp.open("GET", "http://192.168.0.3//fw"); xhttp.send();
+      }
+
+      function left(){
+        xhttp.open("GET", "http://192.168.0.3//left"); xhttp.send();
+      }
+
+      function backward(){
+        xhttp.open("GET", "http://192.168.0.3//bw"); xhttp.send();
+      }
+
+      function right(){
+        xhttp.open("GET", "http://192.168.0.3//right"); xhttp.send();
+      }
+
+      
+
+      
+    
+      </script>
+</html>
